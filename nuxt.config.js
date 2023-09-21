@@ -1,22 +1,38 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'The Art Of Productifity',
-    author: 'Nugrawan pratama',
+    title: 'MARKET CUB - Shopping and Sale',
+    author: 'Nugrawan pratama', 
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/static/favico.ico' }],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: ['@/assets/css/main.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [
+  ],
+
+  router: {
+    extendRoutes(routes) {
+      routes.push({
+        name: 'detail',
+        path: '/products/:id',
+        component: 'pages/products/_id.vue',
+      })
+      routes.push({
+        name: 'detail',
+        path: '/articles/:title',
+        component: 'pages/articles/_title.vue',
+      })
+    },
+  },
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -40,7 +56,7 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/',
+    baseURL: 'https://berita-indo-api.vercel.app',
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
