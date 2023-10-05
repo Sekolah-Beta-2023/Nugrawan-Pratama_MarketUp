@@ -1,5 +1,5 @@
-<template class="container">
-    <div class="p-10 h-screen text-center bg-slate-300 w-[50%] mx-auto text-lg mt-10 rounded-md leading-10 text-gray-800 font-medium">
+<template>
+    <div class="pt-52 h-screen text-center bg-slate-300 w-[50%] mx-auto text-lg rounded-md leading-10 text-gray-800 font-medium">
       <select v-model="selectedCategory" class="bg-slate-400 p-2 rounded-md mb-3">
         <option value="" class="bg-slate-500">Semua Kategori</option>
         <option v-for="category in categories" :key="{ category }" :value="category">{{ category }}</option>
@@ -20,6 +20,9 @@
           { id: 1, name: 'Task 1', category: 'Sekunder' },
           { id: 2, name: 'Task 2', category: 'Primer' },
           { id: 3, name: 'Task 3', category: 'Tersier' },
+          { id: 4, name: 'Task 4', category: 'Promotion' },
+          { id: 5, name: 'Task 5', category: 'Sultan' },
+          { id: 6, name: 'Task 6', category: 'Crazy' }
         ],
         selectedCategory: '',
       };
