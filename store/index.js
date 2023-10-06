@@ -7,45 +7,44 @@ export const state = () => ({
 
 export const getters = {
     isAuthenticated(state) {
-        return state.auth.loggedIn
+        return state.auth.loggedIn;
     },
 
     loggedInUser(state) {
-        return state.auth.user
-    }
-}
+        return state.auth.user;
+    },
+};
 
-export const mutations = ({
+export const mutations = {
     MEN(state, data) {
-        state.menData = data
+        state.menData = data;
     },
     WOMEN(state, data) {
-        state.womenData = data
+        state.womenData = data;
     },
     JEWELERY(state, data) {
-        state.jeweleryData = data
+        state.jeweleryData = data;
     },
     ELECTRONICTS(state, data) {
-        state.eletData = data
-
+        state.eletData = data;
     },
-});
+};
 
-export const actions = ({
+export const actions = {
     async fetchMenProducts({ commit }) {
-        const data = await this.$axios.get('products/category/men\'s clothing')
-        commit('MEN', data)
+        const { data } = await this.$axios.get("products/category/men's clothing");
+        commit('MEN', data);
     },
     async fetchWomenProducts({ commit }) {
-        const data = await this.$axios.get('products/category/women\'s clothing?limit=4')
-        commit('WOMEN', data)
+        const { data } = await this.$axios.get("products/category/women's clothing?limit=4");
+        commit('WOMEN', data);
     },
     async fetchJeweleryProducts({ commit }) {
-        const data = await this.$axios.get('products/category/jewelery')
-        commit('JEWELERY', data)
+        const { data } = await this.$axios.get("products/category/jewelery");
+        commit('JEWELERY', data);
     },
     async fetchElectronictsProducts({ commit }) {
-        const data = await this.$axios.get('products/category/electronics?limit=4')
-        commit('ELECTRONICTS', data)
+        const { data } = await this.$axios.get("products/category/electronics?limit=4");
+        commit('ELECTRONICTS', data);
     },
-});
+};

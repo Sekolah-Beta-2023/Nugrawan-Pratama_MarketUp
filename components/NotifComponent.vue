@@ -1,10 +1,10 @@
 <template>
-  <div class="bg-primary text-bucket p-1 text-center">
+  <div class="text-red-500 p-1 text-center">
     {{ message }}
   </div>
 </template>
 
-    <script>
+<script>
 export default {
   props: ['message'],
 }

@@ -1,11 +1,17 @@
 <template>
-    <section class="container bg-white mx-auto px-10 pt-20 h-screen flex gap-10 items-center">
-        <div class="space-x-3">
-            <h1 class="text-secondary text-5xl mx-auto font-bold">Found the product with premium quality</h1>
-            <p class="text-lg font-semibold font-mono my-5">We offers your all of our best products, from the best quality of material and good process</p>
-            <ButtonComponents target="/register" :primary="false" name="Get Started" />
-            <ButtonComponents target="/products" name="Products List" />
+    <section class="h-screen mb-20 bg-[url(/heroes.jpg)] bg-cover flex justify-center items-center">
+        <div class="text-primary text-center font-semibold w-[40%]">
+            <h1 class="text-8xl">Good Styles Cool Prices</h1>
+            <p class="my-5 font-normal text-sm w-3/4 leading-5 mx-auto ">"Welcome to our website, where you can explore a
+                collection of
+                trendy,
+                high-quality, and
+                exclusive clothing and accessories. We offer a variety of styles for all occasions, from casual to formal"
+            </p>
+            <div class="flex justify-center gap-3">
+                <ButtonComponents :primary=true target="/register" name="Get Started" />
+                <ButtonComponents :primary=true target="#products" name="Products List" />
+            </div>
         </div>
-        <img class="p-5 w-[50%]" src="/hero.jpg" alt="hero image">
     </section>
 </template>

@@ -1,13 +1,13 @@
 <template>
-    <NuxtLink :to="target" :class="[classes ,'hover:text-primary']">
-        <slot></slot>
-    </NuxtLink>
+  <NuxtLink :to="target" :class="[classes, 'hover:opacity-80']">
+    <slot></slot>
+  </NuxtLink>
 </template>
 <script>
 export default {
   props: {
     classes: {
-      type:String,
+      type: String,
       default: ''
     },
     target: {

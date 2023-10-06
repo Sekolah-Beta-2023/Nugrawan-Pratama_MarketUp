@@ -1,30 +1,26 @@
 <template>
-  <NuxtLink
-    :to="target"
-    :class="[
-      classes,
-      'hover:opacity-90 ',
-      primary ? 'bg-primary text-bucket' : 'bg-bucket text-secondary',
-      rounded
-        ? 'rounded-full w-fit font-bold text-lg px-3'
-        : 'px-4 py-2 rounded-lg text-sm font-semibold',
-    ]"
-    @click="
+  <NuxtLink :to="target" :class="[
+    classes,
+    'hover:shadow-md font-semibold w-auto',
+    primary ? 'bg-primary text-secondary' : 'bg-secondary text-primary',
+    rounded
+      ? 'rounded-full w-fit font-bold text-lg px-3'
+      : 'px-4 py-2 rounded-full text-sm',
+  ]" @click="
       {
-        click
-      }
-    "
-  >
+  click
+}
+  ">
     {{ name }}
   </NuxtLink>
 </template>
   
-  <script>
+<script>
 export default {
   props: {
     primary: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     click: {
       type: Boolean,

@@ -2,7 +2,7 @@ export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'MARKET CUB - Shopping and Sale',
-    author: 'Nugrawan pratama', 
+    author: 'Nugrawan pratama',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -24,12 +24,7 @@ export default {
       routes.push({
         name: 'detail',
         path: '/products/:id',
-        component: 'pages/products/_id.vue',
-      })
-      routes.push({
-        name: 'detail',
-        path: '/articles/:title',
-        component: 'pages/articles/_title.vue',
+        component: 'pages/_id.vue',
       })
     },
   },
@@ -49,41 +44,54 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/auth',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
   ],
 
-  // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {
-    // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: 'https://berita-indo-api.vercel.app',
-  },
-
-  // PWA module configuration: https://go.nuxtjs.dev/pwa
-  pwa: {
-    manifest: {
-      lang: 'en',
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: '/auth/login', method: 'post', propertyName: 'token' },
+          user: { url: '/users/2', method: 'get', propertyName: 'data' },
+          logout: false
+        }
+      }
     },
-  },
 
-  env: {
-    baseURL: process.env.BASE_URL
-  },
+    // Axios module configuration: https://go.nuxtjs.dev/config-axios
+    axios: {
+      // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
+      baseURL: 'https://fakestoreapi.com/',
+    },
 
-  // konfigurasi loading component
-  loading: {
-    color: '#fff'
-  },
-
-  // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
-    postcss: {
-      postcssOptions: {
-        plugins: {
-          tailwindcss: {},
-          autoprefixer: {},
-        },
+    // PWA module configuration: https://go.nuxtjs.dev/pwa
+    pwa: {
+      manifest: {
+        lang: 'en',
       },
     },
+
+    env: {
+      baseURL: process.env.BASE_URL
+    },
+
+    // konfigurasi loading component
+    loading: {
+      color: '#fff'
+    },
+
+    // Build Configuration: https://go.nuxtjs.dev/config-build
+    build: {
+      postcss: {
+        postcssOptions: {
+          plugins: {
+            tailwindcss: {},
+            autoprefixer: {},
+          },
+        },
+      },
+    }
   }
 }

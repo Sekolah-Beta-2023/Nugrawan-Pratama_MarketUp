@@ -1,65 +1,27 @@
 <template>
   <main>
-    <div
-      class="py-10 text-secondary mt-10 rounded-md border border-secondary w-[30%] mx-auto space-y-5"
-    >
+    <div class="py-10 text-secondary mt-10 rounded-md border border-secondary w-[30%] mx-auto space-y-5">
       <h2 class="text-center font-bold text-2xl">Login!</h2>
       <NotifComponent v-if="error" :message="error" />
-      <form
-        method="post"
-        class="flex p-5 gap-3 flex-col"
-        @submit.prevent="login"
-      >
-        <label class="label"
-          >Email
-          <div class="border border-bucket p-1 rounded-md">
-            <input
-              v-model="email"
-              type="email"
-              class="outline-none w-full"
-              name="email"
-              required
-            />
-          </div>
-        </label>
-
-        <label class="label"
-          >Password
-          <div class="border border-bucket p-1 rounded-md">
-            <input
-              v-model="password"
-              type="password"
-              class="outline-none w-full"
-              name="password"
-              required
-            />
-          </div>
-        </label>
-        <div class="control">
-          <button
-            type="submit"
-            class="px-3 py-2 text-bucket hover:bg-opacity-90 bg-primary font-semibold rounded-md mt-3"
-          >
-            Login
-          </button>
-        </div>
+      <form method="post" class="flex p-5 flex-col" @submit.prevent="login">
+        <InputField type="text" title="Username" :model="username" />
+        <InputField type="text" title="Password" :model="password" />
+        <ButtonForm title="Login" type="submit" />
       </form>
       <div class="mt-5 text-center">
-        Don't have an account? 
-        <nuxt-link to="/register" class="text-primary hover:underline"
-          >Register</nuxt-link
-        >
+        Don't have an account?
+        <nuxt-link to="/register" class="text-gray hover:underline">Register</nuxt-link>
       </div>
     </div>
   </main>
 </template>
   
-  <script>
+<script>
 export default {
   middleware: 'guest',
   data() {
     return {
-      email: '',
+      username: '',
       password: '',
       error: null,
     }
@@ -70,12 +32,12 @@ export default {
       try {
         await this.$auth.loginWith('local', {
           data: {
-            email: this.email,
-            password: this.password,
+            username: "mor_2314",
+            password: "83r5^_",
           },
         })
 
-        this.$router.push('/')
+        // this.$router.push('/')
       } catch (e) {
         this.error = e.response.data.message
       }

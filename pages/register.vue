@@ -1,8 +1,6 @@
 <template>
   <main>
-    <div
-      class="py-10 text-secondary my-10 rounded-md w-3/4 border border-secondary mx-auto space-y-5"
-    >
+    <div class="py-10 text-secondary my-10 rounded-md w-3/4 border border-secondary mx-auto space-y-5">
       <h2 class="text-center font-bold text-2xl">Register!</h2>
       <NotifComponent v-if="error" :message="error" />
 
@@ -11,11 +9,7 @@
           <div class="flex-1">
             <div class="flex gap-3">
               <InputField type="text" title="Username" :model="username" />
-              <InputField
-                type="text"
-                title="Firstname"
-                :model="name.firstname"
-              />
+              <InputField type="text" title="Firstname" :model="name.firstname" />
               <InputField type="text" title="Lastname" :model="name.lastname" />
             </div>
 
@@ -23,22 +17,14 @@
             <InputField type="password" title="Password" :model="password" />
             <InputField type="number" title="Phone" :model="phone" />
           </div>
-          
+
           <div class="flex-1 pt-10">
             <h3 class="text-lg font-bold">Address</h3>
             <InputField type="text" title="City" :model="address.city" />
             <InputField type="text" title="Street" :model="address.street" />
             <div class="flex gap-3">
-              <InputField
-              type="number"
-              title="Number"
-              :model="address.number"
-              />
-              <InputField
-                type="number"
-                title="Post code"
-                :model="address.zipcode"
-              />
+              <InputField type="number" title="Number" :model="address.number" />
+              <InputField type="number" title="Post code" :model="address.zipcode" />
             </div>
           </div>
         </div>
@@ -48,15 +34,13 @@
 
       <div class="mt-5 text-center">
         Already got an account?
-        <nuxt-link to="/login" class="text-primary hover:underline"
-          >Login</nuxt-link
-        >
+        <nuxt-link to="/login" class="text-gray hover:underline">Login</nuxt-link>
       </div>
     </div>
   </main>
 </template>
   
-  <script>
+<script>
 export default {
   middleware: 'guest',
   data() {
@@ -94,12 +78,14 @@ export default {
           phone: this.phone
         })
         await this.$auth.loginWith('local', {
+          data: {
             username: this.username,
             password: this.password,
+          }
         })
         this.$router.push('/')
       } catch (e) {
-        this.error = e.response.data.message
+        this.error = e
       }
     },
   },
