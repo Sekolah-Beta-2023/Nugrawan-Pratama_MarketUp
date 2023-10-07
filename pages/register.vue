@@ -1,31 +1,27 @@
 <template>
   <main>
-    <div class="py-10 text-secondary my-10 rounded-md w-3/4 border border-secondary mx-auto space-y-5">
+    <div class="py-10 text-secondary w-3/6 my-10 rounded-md border border-secondary mx-auto space-y-5">
       <h2 class="text-center font-bold text-2xl">Register!</h2>
       <NotifComponent v-if="error" :message="error" />
 
       <form method="post" class="p-5" @submit.prevent="register">
         <div class="flex gap-10">
           <div class="flex-1">
-            <div class="flex gap-3">
-              <InputField type="text" title="Username" :model="username" />
-              <InputField type="text" title="Firstname" :model="name.firstname" />
-              <InputField type="text" title="Lastname" :model="name.lastname" />
-            </div>
-
-            <InputField type="email" title="Email" :model="email" />
-            <InputField type="password" title="Password" :model="password" />
-            <InputField type="number" title="Phone" :model="phone" />
-          </div>
-
-          <div class="flex-1 pt-10">
-            <h3 class="text-lg font-bold">Address</h3>
-            <InputField type="text" title="City" :model="address.city" />
-            <InputField type="text" title="Street" :model="address.street" />
-            <div class="flex gap-3">
-              <InputField type="number" title="Number" :model="address.number" />
-              <InputField type="number" title="Post code" :model="address.zipcode" />
-            </div>
+            <label class="text-sm p-1 block my-3 font-semibold w-full">Username
+              <div class="rounded-md border p-1">
+                <input v-model="username" name="username" type="text" class="outline-none w-full" required />
+              </div>
+            </label>
+            <label class="text-sm p-1 block my-3 font-semibold w-full">Password
+              <div class="rounded-md border p-1">
+                <input v-model="email" name="email" type="email" class="outline-none w-full" required />
+              </div>
+            </label>
+            <label class="text-sm p-1 block my-3 font-semibold w-full">Password
+              <div class="rounded-md border p-1">
+                <input v-model="password" name="password" type="password" class="outline-none w-full" required />
+              </div>
+            </label>
           </div>
         </div>
 
@@ -45,47 +41,30 @@ export default {
   middleware: 'guest',
   data() {
     return {
-      email: '',
       username: '',
+      email: '',
       password: '',
-      name: {
-        firstname: '',
-        lastname: '',
-      },
-      address: {
-        city: '',
-        street: '',
-        number: 0,
-        zipcode: '',
-        geolocation: {
-          lat: '',
-          long: '',
-        },
-      },
-      phone: '',
       error: null,
     }
   },
   methods: {
     async register() {
       try {
-        await this.$axios.post('/users', {
-          email: this.email,
+        await this.$axios.post('http://127.0.0.1:3333/api/register', {
           username: this.username,
-          password: this.password,
-          name: this.name,
-          address: this.address,
-          phone: this.phone
+          email: this.email,
+          password: this.password
         })
+
         await this.$auth.loginWith('local', {
           data: {
-            username: this.username,
+            email: this.email,
             password: this.password,
           }
         })
         this.$router.push('/')
       } catch (e) {
-        this.error = e
+        this.error = e.response.data.message
       }
     },
   },

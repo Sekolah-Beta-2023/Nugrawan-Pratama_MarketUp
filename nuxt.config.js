@@ -24,7 +24,7 @@ export default {
       routes.push({
         name: 'detail',
         path: '/products/:id',
-        component: 'pages/_id.vue',
+        component: 'pages/products/_id.vue',
       })
     },
   },
@@ -49,49 +49,49 @@ export default {
     '@nuxtjs/pwa',
   ],
 
+
+  // Axios module configuration: https://go.nuxtjs.dev/config-axios
+  axios: {
+    // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
+    baseURL: '',
+  },
+
   auth: {
     strategies: {
       local: {
         endpoints: {
-          login: { url: '/auth/login', method: 'post', propertyName: 'token' },
-          user: { url: '/users/2', method: 'get', propertyName: 'data' },
+          login: { url: 'http://127.0.0.1:3333/api/login', method: 'post', propertyName: 'data.token' },
+          user: { url: 'http://127.0.0.1:3333/api/me', method: 'get', propertyName: 'data' },
           logout: false
         }
       }
     },
-
-    // Axios module configuration: https://go.nuxtjs.dev/config-axios
-    axios: {
-      // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-      baseURL: 'https://fakestoreapi.com/',
+  },
+  // PWA module configuration: https://go.nuxtjs.dev/pwa
+  pwa: {
+    manifest: {
+      lang: 'en',
     },
+  },
 
-    // PWA module configuration: https://go.nuxtjs.dev/pwa
-    pwa: {
-      manifest: {
-        lang: 'en',
-      },
-    },
+  env: {
+    baseURL: process.env.BASE_URL
+  },
 
-    env: {
-      baseURL: process.env.BASE_URL
-    },
+  // konfigurasi loading component
+  loading: {
+    color: '#fff'
+  },
 
-    // konfigurasi loading component
-    loading: {
-      color: '#fff'
-    },
-
-    // Build Configuration: https://go.nuxtjs.dev/config-build
-    build: {
-      postcss: {
-        postcssOptions: {
-          plugins: {
-            tailwindcss: {},
-            autoprefixer: {},
-          },
+  // Build Configuration: https://go.nuxtjs.dev/config-build
+  build: {
+    postcss: {
+      postcssOptions: {
+        plugins: {
+          tailwindcss: {},
+          autoprefixer: {},
         },
       },
-    }
+    },
   }
 }

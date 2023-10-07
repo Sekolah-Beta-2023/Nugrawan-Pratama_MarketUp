@@ -4,8 +4,16 @@
       <h2 class="text-center font-bold text-2xl">Login!</h2>
       <NotifComponent v-if="error" :message="error" />
       <form method="post" class="flex p-5 flex-col" @submit.prevent="login">
-        <InputField type="text" title="Username" :model="username" />
-        <InputField type="text" title="Password" :model="password" />
+        <label class="text-sm p-1 block my-3 font-semibold w-full">Email
+          <div class="rounded-md border p-1">
+            <input v-model="email" name="email" type="text" class="outline-none w-full" required />
+          </div>
+        </label>
+        <label class="text-sm p-1 block my-3 font-semibold w-full">Password
+          <div class="rounded-md border p-1">
+            <input v-model="password" name="password" type="password" class="outline-none w-full" required />
+          </div>
+        </label>
         <ButtonForm title="Login" type="submit" />
       </form>
       <div class="mt-5 text-center">
@@ -21,7 +29,7 @@ export default {
   middleware: 'guest',
   data() {
     return {
-      username: '',
+      email: '',
       password: '',
       error: null,
     }
@@ -32,12 +40,12 @@ export default {
       try {
         await this.$auth.loginWith('local', {
           data: {
-            username: "mor_2314",
-            password: "83r5^_",
+            email: this.email,
+            password: this.password,
           },
         })
 
-        // this.$router.push('/')
+        this.$router.push('/')
       } catch (e) {
         this.error = e.response.data.message
       }

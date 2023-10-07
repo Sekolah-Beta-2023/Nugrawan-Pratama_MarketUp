@@ -9,21 +9,9 @@
       </div>
     </div>
 
-    <h1 class="text-5xl font-semibold text-white p-5 bg-gray">Find Our Products</h1>
-    <CardContainer title="Men's Clothing">
+    <h1 class="text-5xl font-semibold text-white p-5 bg-gray">Our best products</h1>
+    <CardContainer title="Favorites">
       <CardItem :data="menData" />
-    </CardContainer>
-
-    <CardContainer title="Jewelery" :primary="false">
-      <CardItem :data="jeweleryData" :is-clothes="false" />
-    </CardContainer>
-
-    <CardContainer title="Electronicts">
-      <CardItem :data="eletData" :is-clothes="false" />
-    </CardContainer>
-
-    <CardContainer title="Women's Clothing" :primary="false">
-      <CardItem :data="womenData" />
     </CardContainer>
   </main>
 </template>
@@ -33,16 +21,13 @@ import { mapState, mapActions } from 'vuex'
 export default {
   layout: 'home',
   computed: {
-    ...mapState(['menData', 'womenData', 'jeweleryData', 'eletData']),
+    ...mapState(['menData']),
   },
   mounted() {
     this.fetchMenProducts()
-    this.fetchWomenProducts()
-    this.fetchJeweleryProducts()
-    this.fetchElectronictsProducts()
   },
   methods: {
-    ...mapActions(['fetchMenProducts', 'fetchWomenProducts', 'fetchJeweleryProducts', 'fetchElectronictsProducts'])
+    ...mapActions(['fetchMenProducts'])
   }
 }
 </script>

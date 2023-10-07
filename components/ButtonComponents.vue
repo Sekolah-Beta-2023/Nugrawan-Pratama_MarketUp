@@ -1,16 +1,12 @@
 <template>
   <NuxtLink :to="target" :class="[
     classes,
-    'hover:shadow-md font-semibold w-auto',
+    'hover:shadow-md rounded-full w-auto font-semibold',
     primary ? 'bg-primary text-secondary' : 'bg-secondary text-primary',
     rounded
-      ? 'rounded-full w-fit font-bold text-lg px-3'
-      : 'px-4 py-2 rounded-full text-sm',
-  ]" @click="
-      {
-  click
-}
-  ">
+      ? 'w-fit font-bold text-lg px-3 py-2 text-center'
+      : 'text-sm px-5 py-3 font-semibold',
+  ]" @click="click">
     {{ name }}
   </NuxtLink>
 </template>
@@ -23,8 +19,8 @@ export default {
       default: false,
     },
     click: {
-      type: Boolean,
-      default: false,
+      type: Function,
+      default: function () { },
     },
     rounded: {
       type: Boolean,

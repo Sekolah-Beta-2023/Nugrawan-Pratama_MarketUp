@@ -30,21 +30,22 @@ export const mutations = {
     },
 };
 
+const url = 'https://fakestoreapi.com/'
 export const actions = {
     async fetchMenProducts({ commit }) {
-        const { data } = await this.$axios.get("products/category/men's clothing");
+        const { data } = await this.$axios.get(url + "products/category/men's clothing");
         commit('MEN', data);
     },
     async fetchWomenProducts({ commit }) {
-        const { data } = await this.$axios.get("products/category/women's clothing?limit=4");
+        const { data } = await this.$axios.get(url + "products/category/women's clothing?limit=4");
         commit('WOMEN', data);
     },
     async fetchJeweleryProducts({ commit }) {
-        const { data } = await this.$axios.get("products/category/jewelery");
+        const { data } = await this.$axios.get(url + "products/category/jewelery");
         commit('JEWELERY', data);
     },
     async fetchElectronictsProducts({ commit }) {
-        const { data } = await this.$axios.get("products/category/electronics?limit=4");
+        const { data } = await this.$axios.get(url + "products/category/electronics?limit=4");
         commit('ELECTRONICTS', data);
     },
 };
