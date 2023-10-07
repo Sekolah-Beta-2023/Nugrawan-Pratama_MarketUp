@@ -1,4 +1,5 @@
 export const state = () => ({
+    myProducts: [],
     menData: [],
     womenData: [],
     jeweleryData: [],
@@ -16,6 +17,9 @@ export const getters = {
 };
 
 export const mutations = {
+    MY_PRODUCTS(state, data) {
+        state.myProducts = data;
+    },
     MEN(state, data) {
         state.menData = data;
     },
@@ -30,8 +34,19 @@ export const mutations = {
     },
 };
 
-const url = 'https://fakestoreapi.com/'
+const supaURL = process.env.supabaseApi;
+const url = 'https://fakestoreapi.com/';
+
 export const actions = {
+    async fetchMyProducts({ commit }) {
+        const { data } = await this.$axios.get(supaURL + "/rest/v1/products", {
+            headers: {
+                apikey: process.env.supabaseKey,
+                Authorization: 'Bearer ' + process.env.supabaseKey
+            }
+        })
+        commit('MY_PRODUCTS', data);
+    },
     async fetchMenProducts({ commit }) {
         const { data } = await this.$axios.get(url + "products/category/men's clothing");
         commit('MEN', data);

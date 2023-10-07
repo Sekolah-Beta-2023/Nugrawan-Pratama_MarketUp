@@ -10,6 +10,9 @@
                         <NuxtLink to="/products"> Products </NuxtLink>
                     </li>
                     <li>
+                        <NuxtLink to="/products/me"> My Products </NuxtLink>
+                    </li>
+                    <li>
                         <NuxtLink to="/forms"> Forms </NuxtLink>
                     </li>
                 </ul>

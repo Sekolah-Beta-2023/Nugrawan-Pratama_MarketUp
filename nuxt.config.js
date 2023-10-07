@@ -75,7 +75,8 @@ export default {
   },
 
   env: {
-    baseURL: process.env.BASE_URL
+    supabaseApi: process.env.SUPABASE_API,
+    supabaseKey: process.env.SUPABASE_KEY,
   },
 
   // konfigurasi loading component
