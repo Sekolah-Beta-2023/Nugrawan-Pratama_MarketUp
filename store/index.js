@@ -1,6 +1,8 @@
 export const state = () => ({
     myAddProducts: [],
     myProducts: [],
+    selectedProducts: [],
+    categories: [],
     menData: [],
     womenData: [],
     jeweleryData: [],
@@ -23,6 +25,12 @@ export const mutations = {
     },
     MY_PRODUCTS(state, product) {
         state.myProducts = product;
+    },
+    SELECTED_PRODUCTS(state, data) {
+        state.selectedProducts = data;
+    },
+    CATEGORIES(state, data) {
+        state.categories = data;
     },
     MEN(state, data) {
         state.menData = data;
@@ -59,6 +67,16 @@ export const actions = {
             },
         })
         commit('MY_PRODUCTS', data);
+    },
+
+    async selectProducts({ commit }, category) {
+        const { data } = await this.$axios.get(url + 'products/category/' + category + '?limit=4');
+        commit('SELECTED_PRODUCTS', data);
+    },
+
+    async fetchCategories({ commit }) {
+        const { data } = await this.$axios.get(url + "products/categories");
+        commit('CATEGORIES', data);
     },
     async fetchMenProducts({ commit }) {
         const { data } = await this.$axios.get(url + "products/category/men's clothing");

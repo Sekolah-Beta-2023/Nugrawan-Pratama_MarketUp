@@ -1,8 +1,13 @@
 <template>
   <main id="content">
     <h1 class="text-5xl font-semibold text-white p-5 bg-gray">Our Products Categories</h1>
-    <CardContainer title="Favorites">
-      <CardItem :data="menData" />
+    <div class="px-10 items-center text-secondary text-xl font-bold flex gap-10">
+      <button v-for="category in categories" :key="category" class="hover:bg-gray p-3" @click="selectProducts(category)">
+        {{ category }}
+      </button>
+    </div>
+    <CardContainer title="">
+      <CardItem :is-clothes="false" :data="selectedProducts.length == 0 ? eletData : selectedProducts" />
     </CardContainer>
     <div class="bg-[url('/second.jpg')] bg-cover w-5/6 mx-auto p-10 h-96 m-10 rounded-md flex flex-col justify-center">
       <div class="w-[40%] text-white">
@@ -25,13 +30,14 @@ import { mapState, mapActions } from 'vuex'
 export default {
   layout: 'home',
   computed: {
-    ...mapState(['menData']),
+    ...mapState(['selectedProducts', 'categories', 'eletData']),
   },
   mounted() {
-    this.fetchMenProducts()
+    this.fetchCategories()
+    this.fetchElectronictsProducts()
   },
   methods: {
-    ...mapActions(['fetchMenProducts'])
+    ...mapActions(['selectProducts', 'fetchCategories', 'fetchElectronictsProducts']),
   }
 }
 </script>
