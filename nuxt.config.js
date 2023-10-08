@@ -21,11 +21,20 @@ export default {
 
   router: {
     extendRoutes(routes) {
-      routes.push({
-        name: 'detail',
-        path: '/products/:id',
-        component: 'pages/products/_id.vue',
-      })
+      routes.push(
+        {
+          name: 'products',
+          path: '/products/:id',
+          component: 'pages/products/_id.vue', // Mengarahkan ke _id.vue untuk :id
+        }
+      )
+      routes.push(
+        {
+          name: 'myproducts',
+          path: '/products/me/:myid',
+          component: 'pages/products/_myid.vue', // Mengarahkan ke _id.vue untuk :id
+        }
+      );
     },
   },
 
@@ -38,6 +47,7 @@ export default {
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
+    '@nuxtjs/localforage',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules

@@ -6,7 +6,7 @@
     rounded
       ? 'w-fit font-bold text-lg px-3 py-2 text-center'
       : 'text-sm px-5 py-3 font-semibold',
-  ]" @click="click">
+  ]">
     {{ name }}
   </NuxtLink>
 </template>
@@ -17,10 +17,6 @@ export default {
     primary: {
       type: Boolean,
       default: false,
-    },
-    click: {
-      type: Function,
-      default: function () { },
     },
     rounded: {
       type: Boolean,

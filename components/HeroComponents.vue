@@ -10,7 +10,7 @@
             </p>
             <div class="flex justify-center gap-3">
                 <ButtonComponents :primary=true target="/register" name="Get Started" />
-                <ButtonComponents :primary=true target="#products" name="Products List" />
+                <ButtonComponents :primary=true target="/products/me" name="Your Products" />
             </div>
         </div>
     </section>

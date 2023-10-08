@@ -1,7 +1,9 @@
 <template>
-  <label class="text-sm p-1 block my-3 font-semibold w-full">{{ title }}
+  <label class="text-sm p-1 block my-2 font-semibold w-full">
+    {{ label }}
     <div class="rounded-md border p-1">
-      <input v-model="dataModel" :type="type" class="outline-none w-full" required />
+      <input :value="value" :name="name" :type="type" class="outline-none w-full" :required="required"
+        @input="updateValue($event)" />
     </div>
   </label>
 </template>
@@ -9,28 +11,16 @@
 <script>
 export default {
   props: {
-    title: {
-      type: String,
-      default: 'Field',
-    },
-    model: {
-      type: String,
-      default: 'username',
-    },
-    type: {
-      type: String,
-      default: 'text',
+    label: String,
+    value: [String, Number],
+    name: String,
+    type: String,
+    required: Boolean,
+  },
+  methods: {
+    updateValue(event) {
+      this.$emit('input', event.target.value);
     },
   },
-  data() {
-    return {
-
-      dataModel: ''
-    }
-  },
-  mounted() {
-    this.dataModel = this.model
-  }
-
-}
+};
 </script>

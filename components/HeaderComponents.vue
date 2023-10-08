@@ -13,6 +13,9 @@
                         <NuxtLink to="/products/me"> My Products </NuxtLink>
                     </li>
                     <li>
+                        <NuxtLink to="/products/add"> Add Product </NuxtLink>
+                    </li>
+                    <li>
                         <NuxtLink to="/forms"> Forms </NuxtLink>
                     </li>
                 </ul>

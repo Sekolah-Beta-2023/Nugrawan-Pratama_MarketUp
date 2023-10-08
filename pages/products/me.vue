@@ -1,7 +1,7 @@
 <template>
     <main id="content">
         <h1 class="text-5xl font-semibold text-white p-5 bg-gray">My Products</h1>
-        <CardContainer title="My Products">
+        <CardContainer title="All Products">
             <CardItem :data="myProducts" />
         </CardContainer>
     </main>

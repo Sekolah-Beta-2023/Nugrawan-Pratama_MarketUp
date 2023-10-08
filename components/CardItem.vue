@@ -1,7 +1,7 @@
 <template>
   <div class="px-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
     <div v-for="p in data" :key="p.id" class="p-3 text-secondary bg-white shadow-lg flex flex-col justify-between">
-      <NuxtLink :to="'/products/' + p.id">
+      <NuxtLink :to="'/products' + (p.id.length > 5 ? '/me/' : '/') + p.id">
         <div class="-mb-3">
           <p class="opacity-30 line-through text-right">
             ${{ p.price + 11.1 }}
@@ -19,7 +19,7 @@
         <h3 class="text-ellipsis font-semibold overflow-hidden whitespace-nowrap">{{ p.title }}</h3>
       </NuxtLink>
       <div v-if="isCart">
-        <button class="bg-secondary p-2 font-semibold text-bucket rounded-md w-full hover:opacity-80 mt-5"
+        <button class="bg-secondary p-2 font-semibold text-white rounded-md w-full hover:text-opacity-90 mt-5"
           @click="deleteProduct(p.title)">
           REMOVE
         </button>
@@ -51,6 +51,7 @@ export default {
   methods: {
     async deleteProduct(product) {
       await this.$localForage.removeItem(product)
+      window.location.reload()
     },
   },
 }

@@ -1,7 +1,7 @@
 <template>
   <main id="content">
-    <CardContainer v-if="cartProducts.length > 0" title="My-Cart">
-      <CardItem :data="cartProducts" :is-cart="true"/>
+    <CardContainer v-if="cartProducts.length > 0" title="My-Cart" :primary="false">
+      <CardItem :data="cartProducts" :is-cart="true" />
     </CardContainer>
     <div v-else>
       <h2 class="text-center text-4xl font-bold py-32 opacity-60">Cart Is Empty</h2>

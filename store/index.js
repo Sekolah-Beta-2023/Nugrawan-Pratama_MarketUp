@@ -1,4 +1,5 @@
 export const state = () => ({
+    myAddProducts: [],
     myProducts: [],
     menData: [],
     womenData: [],
@@ -17,8 +18,11 @@ export const getters = {
 };
 
 export const mutations = {
-    MY_PRODUCTS(state, data) {
-        state.myProducts = data;
+    MY_ADD_PRODUCTS(state, product) {
+        state.myAddProducts.push(product);
+    },
+    MY_PRODUCTS(state, product) {
+        state.myProducts = product;
     },
     MEN(state, data) {
         state.menData = data;
@@ -38,12 +42,21 @@ const supaURL = process.env.supabaseApi;
 const url = 'https://fakestoreapi.com/';
 
 export const actions = {
+    async addMyProducts({ commit }, myProducts) {
+        const { data } = await this.$axios.post(supaURL + "/rest/v1/products", myProducts, {
+            headers: {
+                apikey: process.env.supabaseKey,
+                Authorization: 'Bearer ' + process.env.supabaseKey
+            },
+        })
+        commit('MY_ADD_PRODUCTS', data);
+    },
     async fetchMyProducts({ commit }) {
         const { data } = await this.$axios.get(supaURL + "/rest/v1/products", {
             headers: {
                 apikey: process.env.supabaseKey,
                 Authorization: 'Bearer ' + process.env.supabaseKey
-            }
+            },
         })
         commit('MY_PRODUCTS', data);
     },
