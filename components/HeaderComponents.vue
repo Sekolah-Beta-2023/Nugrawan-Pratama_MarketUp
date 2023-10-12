@@ -15,9 +15,6 @@
                     <li>
                         <NuxtLink to="/products/add"> Add Product </NuxtLink>
                     </li>
-                    <li>
-                        <NuxtLink to="/forms"> Forms </NuxtLink>
-                    </li>
                 </ul>
             </div>
             <ul class="flex items-center gap-5">
@@ -31,7 +28,7 @@
                     </SmallButton>
                 </li>
                 <li>
-                    <SmallButton>
+                    <SmallButton target="/products/add">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                             class="bi bi-bag-check" viewBox="0 0 16 16">
                             <path fill-rule="evenodd"
@@ -42,7 +39,7 @@
                     </SmallButton>
                 </li>
                 <li>
-                    <SmallButton>
+                    <SmallButton target="/products/me">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                             class="bi bi-person-lines-fill" viewBox="0 0 16 16">
                             <path

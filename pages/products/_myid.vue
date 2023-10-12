@@ -1,6 +1,6 @@
 <template>
     <div>
-        <DetailComponent :product="product" />
+        <DetailComponent :product="product" :canDelete="true" />
     </div>
 </template>
 

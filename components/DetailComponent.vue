@@ -12,7 +12,7 @@
                 <li class="font-semibold">{{ product.description }}</li>
             </ul>
         </div>
-        <div class="w-[20%]">
+        <div class="w-[20%] pt-10">
             <section class="bg-secondary p-5 flex flex-col justify-between rounded-md text-primary">
                 <h3 class="text-xl text-center font-bold text-gray">Payment</h3>
                 <div class="p-3 space-y-5">
@@ -32,8 +32,8 @@
                     <p class="font-semibold text-lg">Add To Cart</p>
                 </button>
             </section>
-            <div class="mt-10 text-right" @click="deleteMyProduct">
-                <ButtonComponents name="Delete This Product" classes="bg-red-900" />
+            <div v-show="canDelete" class="mt-10 text-right" @click="deleteMyProduct">
+                <ButtonComponents name="Delete This Product" classes="bg-red-800 hover:bg-red-950" />
             </div>
         </div>
 
@@ -49,7 +49,7 @@ export default {
         },
         canDelete: {
             type: Boolean,
-            default: true
+            default: false
         }
     },
     computed: {
