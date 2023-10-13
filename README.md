@@ -1,4 +1,6 @@
-# NuxtJs-V2
+# MarketUp
+## Web E-Commerce Peralatran Rumah Tangga
+### Backend : https://github.com/nugrawan/adonis-jwt-auth
 
 ## Build Setup
 
